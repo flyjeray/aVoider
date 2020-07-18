@@ -15,12 +15,15 @@ public class Player_Mechanics : MonoBehaviour
         transform.position = new Vector2(0, playerData.centerOfRotation.position.y - playerData.distanceToCenter);
     }
 
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) playerData.isClockwiseDirectioned = !playerData.isClockwiseDirectioned;
+    }
+
     private void FixedUpdate()
     {
         // Направление вращения игрока, зависящее от bool в Player_DataContainer
-        Vector3 direction;
-
-        if (Input.GetMouseButtonDown(0)) playerData.isClockwiseDirectioned = !playerData.isClockwiseDirectioned;
+        Vector3 direction;        
 
         if (playerData.isClockwiseDirectioned) direction = Vector3.forward;
         else direction = Vector3.back;
