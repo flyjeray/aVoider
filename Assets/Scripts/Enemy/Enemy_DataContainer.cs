@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class Enemy_DataContainer : MonoBehaviour
 {
-    public float amountOfBullets;
-
+    [Header("All Attacks\' Settings")]
     public float periodOfShooting;
     public float pauseBetweenShooting;
-
     public float attackPrepareTime;
 
+    [Header("\"FourSideShot\" Attack Settings")]
+    public float amountOfBullets_FourSideShot;
+
+    [Header("\"Shoot in Player\" Attack Settings")]
+    public float amountOfBullets_SIP;
+
+    [Header("Bullet Settings")]
     public float bulletLifeTime;
     public float bulletSpeed;
     public GameObject bullet;
     public Transform bulletPackage;
+    public float timeToDestroy;
 
-    public bool isGameOn;
-    
+    [Header("Game Settings")]
+    public bool isGameOn;    
     public Transform player;
 }

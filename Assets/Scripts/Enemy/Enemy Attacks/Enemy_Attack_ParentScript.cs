@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Enemy_DataContainer))]
 public abstract class Enemy_Attack_ParentScript : MonoBehaviour
 {
-    [HideInInspector] public Enemy_DataContainer enemyData;
+    public Enemy_DataContainer enemyData;
 
     private void Awake()
     {

@@ -22,6 +22,9 @@ public class Enemy_Mechanics : MonoBehaviour
         while (enemyData.isGameOn)
         {
             attacks[UnityEngine.Random.Range(0, attacks.Length)].Execute();
+
+
+
             yield return new WaitForSeconds(enemyData.pauseBetweenShooting);
         }        
     }

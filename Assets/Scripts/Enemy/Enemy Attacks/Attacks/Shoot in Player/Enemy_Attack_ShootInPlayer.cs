@@ -8,10 +8,12 @@ public class Enemy_Attack_ShootInPlayer : Enemy_Attack_ParentScript
     {
         yield return new WaitForSeconds(enemyData.attackPrepareTime);
 
-        for (int i = 0; i < enemyData.amountOfBullets; i++)
+        for (int i = 0; i < enemyData.amountOfBullets_SIP; i++)
         {
             GameObject bullet = Instantiate(enemyData.bullet, transform.position, Quaternion.identity, enemyData.bulletPackage);
             bullet.GetComponent<Enemy_Bullet_SIP_Mechanics>().Execute();
+
+            yield return new WaitForSeconds(enemyData.periodOfShooting);
         }
     }
 }

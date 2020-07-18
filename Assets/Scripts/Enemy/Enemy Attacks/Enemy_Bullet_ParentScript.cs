@@ -11,6 +11,8 @@ public abstract class Enemy_Bullet_ParentScript : MonoBehaviour
     {
         if (transform.parent.name == "Reference") isReference = true;
         else isReference = false;
+
+        if (!isReference) Destroy(gameObject, enemyData.timeToDestroy);
     }    
 
     private void OnCollisionEnter2D(Collision2D collider)
