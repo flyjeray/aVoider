@@ -9,6 +9,9 @@ public class Enemy_DataContainer : MonoBehaviour
     public float periodOfShooting;
     public float pauseBetweenShooting;
 
+    public float attackPrepareTime;
+
+    public float bulletLifeTime;
     public float bulletSpeed;
     public GameObject bullet;
     public Transform bulletPackage;

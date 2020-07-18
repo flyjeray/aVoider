@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 132808654}
   - component: {fileID: 132808657}
   - component: {fileID: 132808656}
+  - component: {fileID: 132808658}
   m_Layer: 0
   m_Name: EnemyCircle
   m_TagString: Untagged
@@ -216,6 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7eda72335dee899428d81b921e21bac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attacks:
+  - {fileID: 132808658}
 --- !u!114 &132808657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,11 +234,26 @@ MonoBehaviour:
   amountOfBullets: 2
   periodOfShooting: 0.5
   pauseBetweenShooting: 0.5
+  attackPrepareTime: 0
+  bulletLifeTime: 0
   bulletSpeed: 4
   bullet: {fileID: 1208230494}
   bulletPackage: {fileID: 406080728}
   isGameOn: 1
   player: {fileID: 165224456}
+--- !u!114 &132808658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132808653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb41016ac724fe241aaa6908e13c1081, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyData: {fileID: 0}
 --- !u!1 &165224454
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2cd66a281637024f8bd8b57e97c8b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
   speed: 3
   isClockwiseDirectioned: 1
   distanceToCenter: 2
@@ -614,8 +633,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1208230494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b37d3d97935a69040954e904388b3b8e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d0358750d75f0f4da259ff06bd5c7da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 132808657}
-  direction: {x: 0, y: 0, z: 0}
+  isReference: 0
