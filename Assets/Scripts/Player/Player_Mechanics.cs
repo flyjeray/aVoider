@@ -18,6 +18,7 @@ public class Player_Mechanics : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Направление вращения игрока, зависящее от bool в Player_DataContainer
         Vector3 direction;
 
         if (Input.GetMouseButtonDown(0)) playerData.isClockwiseDirectioned = !playerData.isClockwiseDirectioned;
