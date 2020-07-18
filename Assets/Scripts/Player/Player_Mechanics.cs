@@ -6,14 +6,13 @@ using UnityEngine;
 [RequireComponent(typeof(Player_DataContainer))]
 public class Player_Mechanics : MonoBehaviour
 {
-    private Player_DataContainer playerData;
-    [SerializeField] private Transform centerOfRotation;    
+    private Player_DataContainer playerData;       
 
     private void Awake()
     {
         playerData = GetComponent<Player_DataContainer>();
 
-        transform.position = new Vector2(0, centerOfRotation.position.y - playerData.distanceToCenter);
+        transform.position = new Vector2(0, playerData.centerOfRotation.position.y - playerData.distanceToCenter);
     }
 
     private void FixedUpdate()
@@ -26,6 +25,6 @@ public class Player_Mechanics : MonoBehaviour
         if (playerData.isClockwiseDirectioned) direction = Vector3.forward;
         else direction = Vector3.back;
 
-        transform.RotateAround(centerOfRotation.position, direction, playerData.speed);
+        transform.RotateAround(playerData.centerOfRotation.position, direction, playerData.speed);
     }
 }

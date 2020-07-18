@@ -7,4 +7,5 @@ public class Player_DataContainer : MonoBehaviour
     public float speed;
     public bool isClockwiseDirectioned;
     public float distanceToCenter;
+    public Transform centerOfRotation;
 }
