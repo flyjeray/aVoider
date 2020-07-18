@@ -1,0 +1,9 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Player_DataContainer : MonoBehaviour
+{
+    public float speed;
+    public bool isClockwiseDirectioned;
+}
