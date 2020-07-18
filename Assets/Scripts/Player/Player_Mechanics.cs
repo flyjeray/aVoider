@@ -7,11 +7,13 @@ using UnityEngine;
 public class Player_Mechanics : MonoBehaviour
 {
     private Player_DataContainer playerData;
-    [SerializeField] private Transform centerOfRotation;
+    [SerializeField] private Transform centerOfRotation;    
 
     private void Awake()
     {
         playerData = GetComponent<Player_DataContainer>();
+
+        transform.position = new Vector2(0, centerOfRotation.position.y - playerData.distanceToCenter);
     }
 
     private void FixedUpdate()

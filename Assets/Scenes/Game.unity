@@ -312,6 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   isClockwiseDirectioned: 1
+  distanceToCenter: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
