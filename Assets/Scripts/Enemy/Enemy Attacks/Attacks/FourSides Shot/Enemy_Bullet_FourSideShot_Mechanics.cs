@@ -8,9 +8,9 @@ public class Enemy_Bullet_FourSideShot_Mechanics : Enemy_Bullet_ParentScript
     private Vector3 movementDirection;
 
     public void SetDirection(Vector2 newDirection)
-    {
-        Vector3 direction = newDirection;
-        movementDirection = direction;
+    {        
+        movementDirection = newDirection;
+        Execute();
     }
 
     public override void Attack()
@@ -22,7 +22,7 @@ public class Enemy_Bullet_FourSideShot_Mechanics : Enemy_Bullet_ParentScript
     {
         if (isAttackStarted)
         {
-            transform.Translate(movementDirection * enemyData.bulletSpeed * Time.fixedDeltaTime);
+            transform.Translate(movementDirection * enemyData.bulletSpeed * Time.fixedDeltaTime);            
         }
     }
 }

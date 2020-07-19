@@ -14,7 +14,7 @@ public class Enemy_Mechanics : MonoBehaviour
     {
         enemyData = GetComponent<Enemy_DataContainer>();
 
-        StartCoroutine(Attacks());        
+        StartCoroutine(Attacks());
     }
 
     private IEnumerator Attacks()
@@ -22,9 +22,6 @@ public class Enemy_Mechanics : MonoBehaviour
         while (enemyData.isGameOn)
         {
             attacks[UnityEngine.Random.Range(0, attacks.Length)].Execute();
-
-
-
             yield return new WaitForSeconds(enemyData.pauseBetweenShooting);
         }        
     }

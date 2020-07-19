@@ -234,12 +234,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   periodOfShooting: 0.25
-  pauseBetweenShooting: 2
+  pauseBetweenShooting: 1.5
   attackPrepareTime: 1
-  amountOfBullets_FourSideShot: 3
+  amountOfBullets_FourSideShot: 2
   amountOfBullets_SIP: 3
   bulletLifeTime: 1
-  bulletSpeed: 2
+  bulletSpeed: 3
   bullet: {fileID: 1208230494}
   bulletPackage: {fileID: 406080728}
   timeToDestroy: 2
