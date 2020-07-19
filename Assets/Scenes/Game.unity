@@ -221,6 +221,7 @@ MonoBehaviour:
   attacks:
   - {fileID: 132808658}
   - {fileID: 132808659}
+  gameData: {fileID: 708458788}
 --- !u!114 &132808657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -243,7 +244,6 @@ MonoBehaviour:
   bullet: {fileID: 1208230494}
   bulletPackage: {fileID: 406080728}
   timeToDestroy: 2
-  isGameOn: 1
   player: {fileID: 165224456}
 --- !u!114 &132808658
 MonoBehaviour:
@@ -495,6 +495,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &708458787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 708458789}
+  - component: {fileID: 708458788}
+  m_Layer: 0
+  m_Name: GameData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &708458788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708458787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abeff4ed241dda0459a6e32575b145bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGameOn: 1
+  playerScore: 0
+--- !u!4 &708458789
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708458787}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.4645967, y: -3.895195, z: -11.240199}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &774545827
 GameObject:

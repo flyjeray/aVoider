@@ -22,7 +22,6 @@ public class Enemy_DataContainer : MonoBehaviour
     public Transform bulletPackage;
     public float timeToDestroy;
 
-    [Header("Game Settings")]
-    public bool isGameOn;    
+    [Header("Game Settings")]       
     public Transform player;
 }

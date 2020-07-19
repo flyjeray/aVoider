@@ -6,9 +6,10 @@ using UnityEngine;
 [RequireComponent(typeof(Enemy_DataContainer))]
 public class Enemy_Mechanics : MonoBehaviour
 {
-    private Enemy_DataContainer enemyData;
+    private Enemy_DataContainer enemyData;    
 
     [SerializeField] private Enemy_Attack_ParentScript[] attacks;
+    [SerializeField] private Game_DataContainer gameData;
 
     private void Awake()
     {
@@ -19,9 +20,11 @@ public class Enemy_Mechanics : MonoBehaviour
 
     private IEnumerator Attacks()
     {
-        while (enemyData.isGameOn)
+        while (gameData.isGameOn)
         {
             attacks[UnityEngine.Random.Range(0, attacks.Length)].Execute();
+            gameData.playerScore++;
+
             yield return new WaitForSeconds(enemyData.pauseBetweenShooting);
         }        
     }
