@@ -6,11 +6,12 @@ using UnityEngine;
 [RequireComponent(typeof(Player_DataContainer))]
 public class Player_Mechanics : MonoBehaviour
 {
-    private Player_DataContainer playerData;       
+    [HideInInspector] public Player_DataContainer playerData;
+    [SerializeField] private Game_Controller gameController;
 
     private void Awake()
     {
-        playerData = GetComponent<Player_DataContainer>();
+        playerData = GetComponent<Player_DataContainer>();       
 
         transform.position = new Vector2(0, playerData.centerOfRotation.position.y - playerData.distanceToCenter);
     }
@@ -23,11 +24,19 @@ public class Player_Mechanics : MonoBehaviour
     private void FixedUpdate()
     {
         // Направление вращения игрока, зависящее от bool в Player_DataContainer
+        if (playerData.hp <= 0) gameController.EndGame();
+
         Vector3 direction;        
 
         if (playerData.isClockwiseDirectioned) direction = Vector3.forward;
         else direction = Vector3.back;
 
         transform.RotateAround(playerData.centerOfRotation.position, direction, playerData.speed);
+    }
+
+    public void GetDamage()
+    {
+        playerData.hp--;
+        gameController.UpdateHPText();
     }
 }

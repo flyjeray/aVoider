@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_DataContainer : MonoBehaviour
 {
-    public float hp;
+    public int hp;
     public float speed;
     public bool isClockwiseDirectioned;
     public float distanceToCenter;

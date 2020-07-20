@@ -9,7 +9,7 @@ public class Enemy_Mechanics : MonoBehaviour
     private Enemy_DataContainer enemyData;    
 
     [SerializeField] private Enemy_Attack_ParentScript[] attacks;
-    [SerializeField] private Game_DataContainer gameData;
+    [SerializeField] private Game_Controller gameController;
 
     private void Awake()
     {
@@ -20,12 +20,13 @@ public class Enemy_Mechanics : MonoBehaviour
 
     private IEnumerator Attacks()
     {
-        while (gameData.isGameOn)
+        while (gameController.gameData.isGameOn)
         {
-            attacks[UnityEngine.Random.Range(0, attacks.Length)].Execute();
-            gameData.playerScore++;
+            attacks[UnityEngine.Random.Range(0, attacks.Length)].Execute();            
 
             yield return new WaitForSeconds(enemyData.pauseBetweenShooting);
+            gameController.gameData.playerScore++;
+            gameController.UpdateScoreText();
         }        
     }
 }

@@ -17,9 +17,11 @@ public abstract class Enemy_Bullet_ParentScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.GetComponent<Player_DataContainer>() != null)
+        if (collider.gameObject.GetComponent<Player_Mechanics>() != null)
         {
-            collider.gameObject.GetComponent<Player_DataContainer>().hp--;
+            Player_Mechanics player = collider.gameObject.GetComponent<Player_Mechanics>();
+                        
+            player.GetDamage();
             Destroy(gameObject);
         }
     }
