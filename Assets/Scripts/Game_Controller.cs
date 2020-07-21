@@ -19,6 +19,7 @@ public class Game_Controller : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private Button startButton;
     [SerializeField] private TextMeshProUGUI coinsText;
+    [SerializeField] private Button backToMainMenuButton;
 
     [Header("Game Components")]
     [SerializeField] private GameObject player;
@@ -46,6 +47,7 @@ public class Game_Controller : MonoBehaviour
         scoreText.gameObject.SetActive(true);
 
         startButton.gameObject.SetActive(false);
+        backToMainMenuButton.gameObject.SetActive(false);
     }
 
     public void RestartGame()
@@ -100,7 +102,7 @@ public class Game_Controller : MonoBehaviour
             earnedCoins = (gameData.playerScore * 1.5f);
             PlayerPrefsController.UpdateCoins(earnedCoins);
 
-            coinsString = ("Your coins: " + PlayerPrefsController.GetCoins() + " (Earned: " + earnedCoins + ")");
+            coinsString = ("Your coins: " + PlayerPrefsController.GetCoins() + " (Earned: " + (int)earnedCoins + ")");
 
         }
 
@@ -110,6 +112,7 @@ public class Game_Controller : MonoBehaviour
         bestScoreText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         coinsText.gameObject.SetActive(true);
+        backToMainMenuButton.gameObject.SetActive(true);
 
         hpText.gameObject.SetActive(false);
     }
@@ -123,5 +126,10 @@ public class Game_Controller : MonoBehaviour
     public void UpdateScoreText()
     {
         scoreText.text = gameData.playerScore.ToString();
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 }

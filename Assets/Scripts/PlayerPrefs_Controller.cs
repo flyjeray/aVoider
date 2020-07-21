@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerPrefs_Controller : MonoBehaviour
 {
+    // Best Score - float
+    // Coins - int
+    
     public void SetBestScore(float newBest)
     {
         PlayerPrefs.SetFloat("Best Score", newBest);
@@ -21,11 +24,17 @@ public class PlayerPrefs_Controller : MonoBehaviour
 
     public void UpdateCoins(float earnedCoins)
     {
-        PlayerPrefs.SetFloat("Coins", PlayerPrefs.GetFloat("Coins") + earnedCoins);
+        PlayerPrefs.SetInt("Coins", (int)(PlayerPrefs.GetFloat("Coins") + earnedCoins));
     }
     
     public float GetCoins()
     {
-        return PlayerPrefs.GetFloat("Coins");
+        return PlayerPrefs.GetInt("Coins");
+    }
+
+    public void FullStatsRecover()
+    {
+        PlayerPrefs.SetInt("Coins", 0);
+        PlayerPrefs.SetFloat("Best Score", 0);
     }
 }
