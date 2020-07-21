@@ -18,4 +18,14 @@ public class PlayerPrefs_Controller : MonoBehaviour
     {
         return PlayerPrefs.GetFloat("Best Score");
     }
+
+    public void UpdateCoins(float earnedCoins)
+    {
+        PlayerPrefs.SetFloat("Coins", PlayerPrefs.GetFloat("Coins") + earnedCoins);
+    }
+    
+    public float GetCoins()
+    {
+        return PlayerPrefs.GetFloat("Coins");
+    }
 }

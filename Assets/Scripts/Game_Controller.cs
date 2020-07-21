@@ -18,6 +18,7 @@ public class Game_Controller : MonoBehaviour
     [SerializeField] private Button restartButton;
     [SerializeField] private TextMeshProUGUI hpText;
     [SerializeField] private Button startButton;
+    [SerializeField] private TextMeshProUGUI coinsText;
 
     [Header("Game Components")]
     [SerializeField] private GameObject player;
@@ -30,6 +31,8 @@ public class Game_Controller : MonoBehaviour
         bestScoreText.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
         hpText.gameObject.SetActive(false);
+        scoreText.gameObject.SetActive(false);
+        coinsText.gameObject.SetActive(false);
 
         UpdateHPText();
     }
@@ -38,7 +41,10 @@ public class Game_Controller : MonoBehaviour
     {
         ResumeGame();
 
+        hpText.gameObject.SetActive(true);        
         hpText.gameObject.SetActive(true);
+        scoreText.gameObject.SetActive(true);
+
         startButton.gameObject.SetActive(false);
     }
 
@@ -69,23 +75,41 @@ public class Game_Controller : MonoBehaviour
         }
         Destroy(player);
 
-        bool isScoreBeaten = PlayerPrefsController.CheckScoreBeat(gameData.playerScore);
         string bestScoreString;
+        string coinsString;
 
-        if (isScoreBeaten)
+        // Проверка и обновление (при надобности) лучшего счёта, изменение bestScoreString
         {
-            PlayerPrefsController.SetBestScore(gameData.playerScore);
-            bestScoreString = "New Best!";
+            bool isScoreBeaten = PlayerPrefsController.CheckScoreBeat(gameData.playerScore);            
+
+            if (isScoreBeaten)
+            {
+                PlayerPrefsController.SetBestScore(gameData.playerScore);
+                bestScoreString = "New Best!";
+            }
+            else
+            {
+                bestScoreString = "Your best: " + PlayerPrefsController.GetBestScore();
+            }
         }
-        else
+
+        // Обновление количества монет игрока, изменение coinsString
         {
-            bestScoreString = "Your best: " + PlayerPrefsController.GetBestScore();
+            float earnedCoins;
+
+            earnedCoins = (gameData.playerScore * 1.5f);
+            PlayerPrefsController.UpdateCoins(earnedCoins);
+
+            coinsString = ("Your coins: " + PlayerPrefsController.GetCoins() + " (Earned: " + earnedCoins + ")");
+
         }
 
         bestScoreText.text = bestScoreString;
+        coinsText.text = coinsString;
 
         bestScoreText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
+        coinsText.gameObject.SetActive(true);
 
         hpText.gameObject.SetActive(false);
     }
