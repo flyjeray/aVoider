@@ -7,14 +7,17 @@ using UnityEngine.UI;
 
 public class Game_Controller : MonoBehaviour
 {
+    [Header("System Components")]
     public Game_DataContainer gameData;
     [SerializeField] private Player_DataContainer playerData;
     [SerializeField] private PlayerPrefs_Controller PlayerPrefsController;
 
+    [Header("UI Components")]
     [SerializeField] private TextMeshProUGUI bestScoreText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Button restartButton;
     [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private Button startButton;
 
     [Header("Game Components")]
     [SerializeField] private GameObject player;
@@ -22,10 +25,21 @@ public class Game_Controller : MonoBehaviour
 
     private void Awake()
     {
+        PauseGame();
+
         bestScoreText.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
+        hpText.gameObject.SetActive(false);
 
         UpdateHPText();
+    }
+
+    public void StartGame()
+    {
+        ResumeGame();
+
+        hpText.gameObject.SetActive(true);
+        startButton.gameObject.SetActive(false);
     }
 
     public void RestartGame()
