@@ -16,7 +16,12 @@ public class Player_Mechanics : MonoBehaviour
         playerData = GetComponent<Player_DataContainer>();
         Debug.Log("Active skin: " + prefsController.GetSkinName());
         
-        GetComponent<SpriteRenderer>().material = Resources.Load<Material>("Materials/" + prefsController.GetSkinName());
+        if (Resources.Load<Material>("Materials/" + prefsController.GetSkinName()) != null)
+        {
+            GetComponent<SpriteRenderer>().material =
+                Resources.Load<Material>("Materials/" + prefsController.GetSkinName());
+        }
+        else GetComponent<SpriteRenderer>().material = Resources.Load<Material>("Materials/WhiteMaterial");
 
         transform.position = new Vector2(0, playerData.centerOfRotation.position.y - playerData.distanceToCenter);
     }
