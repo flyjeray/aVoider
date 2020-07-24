@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.iOS;
 using UnityEngine;
 
 // Требование компонента типа Player_DataContainer для корректной игры
@@ -8,10 +9,14 @@ public class Player_Mechanics : MonoBehaviour
 {
     [HideInInspector] public Player_DataContainer playerData;
     [SerializeField] private Game_Controller gameController;
+    [SerializeField] private PlayerPrefs_Controller prefsController;
 
-    private void Awake()
+    private void Start()
     {
-        playerData = GetComponent<Player_DataContainer>();       
+        playerData = GetComponent<Player_DataContainer>();
+        Debug.Log("Active skin: " + prefsController.GetSkinName());
+        
+        GetComponent<SpriteRenderer>().material = Resources.Load<Material>("Materials/" + prefsController.GetSkinName());
 
         transform.position = new Vector2(0, playerData.centerOfRotation.position.y - playerData.distanceToCenter);
     }

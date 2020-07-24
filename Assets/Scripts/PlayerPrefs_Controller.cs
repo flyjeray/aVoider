@@ -1,11 +1,18 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPrefs_Controller : MonoBehaviour
 {
+    [SerializeField] private float BestScore;
+    [SerializeField] private int Coins;
+    [SerializeField] private string SettedSkin;
+    
     // Best Score - float
     // Coins - int
+    // Item buy Status - int
+    // Best score functions
     
     public void SetBestScore(float newBest)
     {
@@ -22,9 +29,11 @@ public class PlayerPrefs_Controller : MonoBehaviour
         return PlayerPrefs.GetFloat("Best Score");
     }
 
-    public void UpdateCoins(float earnedCoins)
+    // Coins functions
+    
+    public void UpdateCoins(int earnedCoins)
     {
-        PlayerPrefs.SetInt("Coins", (int)(PlayerPrefs.GetFloat("Coins") + earnedCoins));
+        PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") + earnedCoins);
     }
     
     public float GetCoins()
@@ -36,5 +45,29 @@ public class PlayerPrefs_Controller : MonoBehaviour
     {
         PlayerPrefs.SetInt("Coins", 0);
         PlayerPrefs.SetFloat("Best Score", 0);
+    }
+
+    // Shop functions
+    
+    public int CheckIsItemBought(string itemName)
+    {
+        return PlayerPrefs.GetInt(itemName);
+    }
+
+    public void SetItemBought(string itemName)
+    {
+        PlayerPrefs.SetInt(itemName, 1);
+    }
+
+    // Skin functions
+    
+    public void SetSkin(string itemName)
+    {
+        PlayerPrefs.SetString("Active Skin", itemName);
+    }
+
+    public string GetSkinName()
+    {
+        return PlayerPrefs.GetString("Active Skin");
     }
 }

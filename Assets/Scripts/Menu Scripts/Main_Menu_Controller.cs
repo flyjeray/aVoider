@@ -26,16 +26,6 @@ public class Main_Menu_Controller : MonoBehaviour
         bestScoreText.text = "Best Score: " + prefsController.GetBestScore();
     }
 
-    public void PlayButton()
-    {
-        SceneManager.LoadScene("Game");
-    }
-
-    public void ShopButton()
-    {
-        SceneManager.LoadScene("Shop");
-    }
-
     public void FullStatsRecoverButton()
     {
         prefsController.FullStatsRecover();

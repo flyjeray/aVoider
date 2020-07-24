@@ -6,5 +6,4 @@ public class Game_DataContainer : MonoBehaviour
 {
     public bool isGameOn;
     public float playerScore;
-    public float pauseSpeed;
 }

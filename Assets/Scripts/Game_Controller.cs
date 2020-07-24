@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -97,9 +98,7 @@ public class Game_Controller : MonoBehaviour
 
         // Обновление количества монет игрока, изменение coinsString
         {
-            float earnedCoins;
-
-            earnedCoins = (gameData.playerScore * 1.5f);
+            int earnedCoins = Convert.ToInt32(gameData.playerScore * 1.5f);
             PlayerPrefsController.UpdateCoins(earnedCoins);
 
             coinsString = ("Your coins: " + PlayerPrefsController.GetCoins() + " (Earned: " + (int)earnedCoins + ")");
