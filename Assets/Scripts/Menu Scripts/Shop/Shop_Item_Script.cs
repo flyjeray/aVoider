@@ -17,7 +17,7 @@ public class Shop_Item_Script : MonoBehaviour
 
     private bool isBought;
     
-    private void Awake()
+    private void Start()
     {
         Debug.Log("PlayerCoins: " + prefsController.GetCoins());
 
@@ -25,9 +25,12 @@ public class Shop_Item_Script : MonoBehaviour
         Debug.Log("Setted material: " + sellingMaterial);
         itemName = sellingMaterial.name;
         Debug.Log("Selling material: " + itemName);
-        
-        SetBoughtStatus();
+
+        if (itemName != "WhiteMaterial") SetBoughtStatus();
+        else isBought = true;
+
         UpdateText();
+        shopData.UpdateCoinsText(prefsController.GetCoins());
     }
 
     private void SetBoughtStatus()
@@ -75,5 +78,6 @@ public class Shop_Item_Script : MonoBehaviour
         }
 
         UpdateText();
+        shopData.UpdateCoinsText(prefsController.GetCoins());
     }
 }

@@ -14,6 +14,13 @@ public class PlayerPrefs_Controller : MonoBehaviour
     // Item buy Status - int
     // Best score functions
     
+    private void Awake()
+    {
+        if (BestScore != 0) SetBestScore(BestScore);
+        if (Coins != 0) UpdateCoins(Coins);
+        if (GetSkinName() != null || !PlayerPrefs.HasKey("Active Skin")) SetSkin("WhiteMaterial");
+    }
+
     public void SetBestScore(float newBest)
     {
         PlayerPrefs.SetFloat("Best Score", newBest);
@@ -29,7 +36,7 @@ public class PlayerPrefs_Controller : MonoBehaviour
         return PlayerPrefs.GetFloat("Best Score");
     }
 
-    // Coins functions
+        // Coins functions
     
     public void UpdateCoins(int earnedCoins)
     {
@@ -47,7 +54,7 @@ public class PlayerPrefs_Controller : MonoBehaviour
         PlayerPrefs.SetFloat("Best Score", 0);
     }
 
-    // Shop functions
+        // Shop functions
     
     public int CheckIsItemBought(string itemName)
     {
@@ -59,7 +66,7 @@ public class PlayerPrefs_Controller : MonoBehaviour
         PlayerPrefs.SetInt(itemName, 1);
     }
 
-    // Skin functions
+        // Skin functions
     
     public void SetSkin(string itemName)
     {
