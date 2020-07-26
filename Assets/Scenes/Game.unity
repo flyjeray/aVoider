@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbbf0eff412852e4eab2dd01c0cc0669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 0}
+  enemyData: {fileID: 132808657}
   spawnPos: {x: 0, y: 0, z: 0}
 --- !u!114 &132808661
 MonoBehaviour:
@@ -546,7 +546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2cd66a281637024f8bd8b57e97c8b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 6
+  hp: 9
   speed: 2
   isClockwiseDirectioned: 1
   distanceToCenter: 2.5
@@ -1069,9 +1069,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af07c5829ef9da4295270cb024c3a71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BestScore: 0
-  Coins: 0
-  SettedSkin: 
 --- !u!114 &708458792
 MonoBehaviour:
   m_ObjectHideFlags: 0
