@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_Bullet_FourSideShot_Mechanics : Enemy_Bullet_ParentScript
+public class Enemy_Bullet_ShootInSettedDirection : Enemy_Bullet_ParentScript
 {
     private bool isAttackStarted = false;
     private Vector3 movementDirection;
 
-    public void SetDirection(Vector2 newDirection)
-    {        
+    public void SetDirection(Vector3 newDirection)
+    {
         movementDirection = newDirection;
-        Execute();
     }
 
     public override void Attack()
@@ -22,7 +21,7 @@ public class Enemy_Bullet_FourSideShot_Mechanics : Enemy_Bullet_ParentScript
     {
         if (isAttackStarted)
         {
-            transform.Translate(movementDirection * enemyData.bulletSpeed * Time.fixedDeltaTime);            
+            transform.Translate(movementDirection * enemyData.bulletSpeed * Time.fixedDeltaTime);
         }
     }
 }

@@ -4,22 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerPrefs_Controller : MonoBehaviour
-{
-    [SerializeField] private float BestScore;
-    [SerializeField] private int Coins;
-    [SerializeField] private string SettedSkin;
-    
+{    
     // Best Score - float
     // Coins - int
     // Item buy Status - int
     // Best score functions
-    
-    private void Awake()
-    {
-        if (BestScore != 0) SetBestScore(BestScore);
-        if (Coins != 0) UpdateCoins(Coins);
-        if (GetSkinName() != null || !PlayerPrefs.HasKey("Active Skin")) SetSkin("WhiteMaterial");
-    }
 
     public void SetBestScore(float newBest)
     {

@@ -5,14 +5,10 @@ using UnityEngine;
 public abstract class Enemy_Bullet_ParentScript : MonoBehaviour
 {
     public Enemy_DataContainer enemyData;
-    public bool isReference;
 
     private void Awake()
     {
-        if (transform.parent.name == "Reference") isReference = true;
-        else isReference = false;
-
-        if (!isReference) Destroy(gameObject, enemyData.timeToDestroy);
+        if (gameObject.transform.parent.name != "Reference") Destroy(gameObject, enemyData.timeToDestroy);
     }    
 
     private void OnCollisionEnter2D(Collision2D collider)
