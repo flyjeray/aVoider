@@ -43,6 +43,15 @@ public class Player_Mechanics : MonoBehaviour
         transform.RotateAround(playerData.centerOfRotation.position, direction, playerData.speed);
     }
 
+    private void OnCollisionEnter2D(Collision2D collider)
+    {
+        if (collider.gameObject.GetComponent<Enemy_Bullet_ShootInSettedDirection>() != null)
+        {
+            Destroy(collider.gameObject);
+            GetDamage();
+        }
+    }
+
     public void GetDamage()
     {
         playerData.hp--;

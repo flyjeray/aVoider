@@ -59,7 +59,7 @@ public class Game_Controller : MonoBehaviour
 
     public void UpdateHPText()
     {
-        hpText.text = "HP: " + (playerData.hp / 2);
+        hpText.text = "HP: " + (playerData.hp);
     }
 
     public void PauseGame()

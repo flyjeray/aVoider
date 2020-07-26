@@ -9,18 +9,7 @@ public abstract class Enemy_Bullet_ParentScript : MonoBehaviour
     private void Awake()
     {
         if (gameObject.transform.parent.name != "Reference") Destroy(gameObject, enemyData.timeToDestroy);
-    }    
-
-    private void OnCollisionEnter2D(Collision2D collider)
-    {
-        if (collider.gameObject.GetComponent<Player_Mechanics>() != null)
-        {
-            Player_Mechanics player = collider.gameObject.GetComponent<Player_Mechanics>();
-                        
-            player.GetDamage();
-            Destroy(gameObject);
-        }
-    }
+    }        
 
     public void Execute()
     {
