@@ -66,4 +66,21 @@ public class PlayerPrefs_Controller : MonoBehaviour
     {
         return PlayerPrefs.GetString("Active Skin");
     }
+
+        // Custom Color functions
+
+    public float GetSavedColorValue(string colorType)
+    {
+        return PlayerPrefs.GetFloat(colorType);
+    }
+
+    public void SetSavedColorValue(string colorType, float colorValue)
+    {
+        PlayerPrefs.SetFloat(colorType, colorValue);
+    }
+
+    public Color GetSavedColor()
+    {
+        return new Color(GetSavedColorValue("Red"), GetSavedColorValue("Green"), GetSavedColorValue("Blue"), 255);
+    }
 }

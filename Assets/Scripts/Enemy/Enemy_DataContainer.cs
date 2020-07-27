@@ -24,4 +24,36 @@ public class Enemy_DataContainer : MonoBehaviour
 
     [Header("Game Settings")]       
     public Transform player;
+
+    private float clockwisedFrames;
+    private float unclockwisedFrames;
+
+    public void RecordFrames(bool clockwised, float frames)
+    {
+        if (clockwised) clockwisedFrames = frames;
+        else unclockwisedFrames = frames;
+    }
+
+    public bool DecideIsClockwiseDirectioned()
+    {       
+        if (clockwisedFrames < unclockwisedFrames)
+        {
+            Debug.Log("Should go Clockwise");
+
+            clockwisedFrames = 0;
+            unclockwisedFrames = 0;
+
+            return true;
+        }            
+            
+        else
+        {
+            Debug.Log("Should go unclockwised");
+
+            clockwisedFrames = 0;
+            unclockwisedFrames = 0;
+
+            return false;
+        }              
+    }
 }

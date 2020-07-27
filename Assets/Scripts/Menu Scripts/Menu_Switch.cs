@@ -19,4 +19,9 @@ public class Menu_Switch : MonoBehaviour
     {
         SceneManager.LoadScene("Shop");
     }
+
+    public void CustomColor()
+    {
+        SceneManager.LoadScene("Custom Color");
+    }
 }

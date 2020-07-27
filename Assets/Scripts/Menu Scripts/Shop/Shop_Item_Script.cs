@@ -8,8 +8,9 @@ using UnityEngine.UI;
 public class Shop_Item_Script : MonoBehaviour
 {
     [SerializeField] private int price;
-    private string itemName;
+    [SerializeField] private string itemName;
     private Material sellingMaterial;
+    [SerializeField] private Image image;
     
     [SerializeField] private PlayerPrefs_Controller prefsController;
     [SerializeField] private TextMeshProUGUI priceText;
@@ -26,8 +27,21 @@ public class Shop_Item_Script : MonoBehaviour
         itemName = sellingMaterial.name;
         Debug.Log("Selling material: " + itemName);
 
-        if (itemName != "WhiteMaterial") SetBoughtStatus();
+        if (itemName != "WhiteMaterial" && itemName != "CustomMaterial") SetBoughtStatus();
         else isBought = true;
+
+        if (image.material.name == "CustomMaterial")
+        {
+            Material newSettedMaterial = image.material;
+
+            Color color = prefsController.GetSavedColor();
+
+            newSettedMaterial.color = color;
+            newSettedMaterial.SetColor("_EmissionColor", color);
+            newSettedMaterial.SetColor("_Color", color);
+
+            image.material = newSettedMaterial;
+        }
 
         UpdateText();
         shopData.UpdateCoinsText(prefsController.GetCoins());
@@ -54,15 +68,20 @@ public class Shop_Item_Script : MonoBehaviour
         }
 
         // В ином случае, в текст под ним выводится надпись "Equip"
-        else if (isBought && prefsController.GetSkinName() != itemName)
+        else if (isBought && prefsController.GetSkinName() != itemName && itemName != "CustomMaterial")
         {
             priceText.text = "Equip";
+        }
+
+        else if (isBought && prefsController.GetSkinName() != itemName && itemName == "CustomMaterial")
+        {
+            priceText.text = "Your Custom Color";
         }
     }
     
     public void Buy()
     {
-        if (!isBought && prefsController.GetCoins() > price)
+        if (!isBought && prefsController.GetCoins() >= price)
         {
             prefsController.UpdateCoins(-price);
             prefsController.SetItemBought(itemName);

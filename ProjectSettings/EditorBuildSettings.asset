@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: b241cbb81a98f844aaa667e8d7422476
+  - enabled: 1
+    path: Assets/Scenes/Custom Color.unity
+    guid: 058627523277fc343a03c8ce8efcf36f
   m_configObjects: {}
