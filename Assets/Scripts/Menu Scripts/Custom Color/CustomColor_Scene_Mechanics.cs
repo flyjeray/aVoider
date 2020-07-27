@@ -34,8 +34,8 @@ public class CustomColor_Scene_Mechanics : MonoBehaviour
         ccData.previewImage.material.color = color;
         ccData.previewImage.material.SetColor("_EmissionColor", color); 
         ccData.previewImage.material.SetColor("_Color", color);
-        
-        ccData.updateColorPriceText.text = ccData.price.ToString();
+
+        ccData.updateColorPriceText.text = "PRICE: " + ccData.price;
 
         if (ccData.isColorNew)
         {
