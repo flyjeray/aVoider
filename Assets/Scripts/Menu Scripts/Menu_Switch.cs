@@ -24,4 +24,9 @@ public class Menu_Switch : MonoBehaviour
     {
         SceneManager.LoadScene("Custom Color");
     }
+
+    public void Stats()
+    {
+        SceneManager.LoadScene("Stats");
+    }
 }

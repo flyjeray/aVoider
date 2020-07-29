@@ -22,7 +22,9 @@ public class CustomColor_Data : MonoBehaviour
 
     public bool isColorNew;
 
+    public Button backToShopButton;
     public Button updateColorButton;
+
     public TextMeshProUGUI updateColorPriceText;
     public Image previewImage;
 }

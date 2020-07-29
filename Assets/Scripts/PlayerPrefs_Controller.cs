@@ -30,11 +30,22 @@ public class PlayerPrefs_Controller : MonoBehaviour
     public void UpdateCoins(int earnedCoins)
     {
         PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") + earnedCoins);
+        UpdateTotalCoins(earnedCoins);
     }
     
-    public float GetCoins()
+    public int GetCoins()
     {
         return PlayerPrefs.GetInt("Coins");
+    }
+
+    public void UpdateTotalCoins(int earnedCoins)
+    {
+        PlayerPrefs.SetInt("Total Coins", PlayerPrefs.GetInt("Total Coins") + earnedCoins);
+    }
+
+    public int GetTotalCoins()
+    {
+        return PlayerPrefs.GetInt("Total Coins");
     }
 
     public void FullStatsRecover()
@@ -82,5 +93,49 @@ public class PlayerPrefs_Controller : MonoBehaviour
     public Color GetSavedColor()
     {
         return new Color(GetSavedColorValue("Red"), GetSavedColorValue("Green"), GetSavedColorValue("Blue"), 255);
+    }
+
+        // Stats functions
+
+    public void IncreaseTotalPlayedGames()
+    {
+        PlayerPrefs.SetInt("Played Games", GetPlayedGames() + 1);
+    }
+
+    public int GetPlayedGames()
+    {
+        return PlayerPrefs.GetInt("Played Games");
+    }
+
+    public void SetAverageTimeOfLife(float newTime)
+    {
+        Debug.Log("This time equals " + newTime);
+
+        if (GetPlayedGames() > 1)
+        {
+            float averageTime = GetAverageTime();
+            Debug.Log("Average Time equals " + averageTime);
+
+            int playedGames = GetPlayedGames();
+            Debug.Log("Total games including this one equal " + playedGames);
+
+            float TotalTime = averageTime * (playedGames - 1);
+            Debug.Log("Total Time equals " + TotalTime);
+
+            averageTime = (TotalTime + newTime) / playedGames;
+            Debug.Log("New average time equals " + averageTime);
+
+            PlayerPrefs.SetFloat("Average Time", averageTime);
+        }
+
+        else
+        {
+            PlayerPrefs.SetFloat("Average Time", newTime);
+        }
+    }
+
+    public float GetAverageTime()
+    {
+        return PlayerPrefs.GetFloat("Average Time");
     }
 }

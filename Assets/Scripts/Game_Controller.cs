@@ -11,7 +11,7 @@ public class Game_Controller : MonoBehaviour
     [Header("System Components")]
     public Game_DataContainer gameData;
     [SerializeField] private Player_DataContainer playerData;
-    [SerializeField] private PlayerPrefs_Controller PlayerPrefsController;
+    [SerializeField] private PlayerPrefs_Controller prefsController;
 
     [Header("UI Components")]
     [SerializeField] private TextMeshProUGUI bestScoreText;
@@ -25,6 +25,8 @@ public class Game_Controller : MonoBehaviour
     [Header("Game Components")]
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject bulletPackage;
+
+    private int timePlayed;
 
     private void Awake()
     {
@@ -43,12 +45,25 @@ public class Game_Controller : MonoBehaviour
     {
         ResumeGame();
 
+        prefsController.IncreaseTotalPlayedGames();
+        StartCoroutine(Timer());
+
         hpText.gameObject.SetActive(true);        
         hpText.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(true);
 
         startButton.gameObject.SetActive(false);
         backToMainMenuButton.gameObject.SetActive(false);
+    }
+
+    private IEnumerator Timer()
+    {
+        while (gameData.isGameOn)
+        {
+            yield return new WaitForSeconds(1);
+
+            timePlayed++;
+        }
     }
 
     public void RestartGame()
@@ -72,6 +87,8 @@ public class Game_Controller : MonoBehaviour
     {
         PauseGame();
 
+        prefsController.SetAverageTimeOfLife(timePlayed);
+
         foreach (Transform child in bulletPackage.transform)
         {
             Destroy(child.gameObject);
@@ -83,25 +100,25 @@ public class Game_Controller : MonoBehaviour
 
         // Проверка и обновление (при надобности) лучшего счёта, изменение bestScoreString
         {
-            bool isScoreBeaten = PlayerPrefsController.CheckScoreBeat(gameData.playerScore);            
+            bool isScoreBeaten = prefsController.CheckScoreBeat(gameData.playerScore);            
 
             if (isScoreBeaten)
             {
-                PlayerPrefsController.SetBestScore(gameData.playerScore);
+                prefsController.SetBestScore(gameData.playerScore);
                 bestScoreString = "New Best!";
             }
             else
             {
-                bestScoreString = "Your best: " + PlayerPrefsController.GetBestScore();
+                bestScoreString = "Your best: " + prefsController.GetBestScore();
             }
         }
 
         // Обновление количества монет игрока, изменение coinsString
         {
             int earnedCoins = Convert.ToInt32(gameData.playerScore * 1.5f);
-            PlayerPrefsController.UpdateCoins(earnedCoins);
+            prefsController.UpdateCoins(earnedCoins);
 
-            coinsString = ("Your coins: " + PlayerPrefsController.GetCoins() + " (Earned: " + (int)earnedCoins + ")");
+            coinsString = ("Your coins: " + prefsController.GetCoins() + " (Earned: " + (int)earnedCoins + ")");
 
         }
 

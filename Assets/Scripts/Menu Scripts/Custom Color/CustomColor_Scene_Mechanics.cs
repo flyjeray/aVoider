@@ -25,10 +25,6 @@ public class CustomColor_Scene_Mechanics : MonoBehaviour
         }
         else ccData.isColorNew = false;
 
-        ccData.redSliderText.text = "RED: " + ccData.redSlider.value.ToString("0.00");
-        ccData.greenSliderText.text = "GREEN: " + ccData.greenSlider.value.ToString("0.00");
-        ccData.blueSliderText.text = "BLUE: " + ccData.blueSlider.value.ToString("0.00");
-
         Color color = new Color(ccData.redSlider.value, ccData.greenSlider.value, ccData.blueSlider.value, 255);
 
         ccData.previewImage.material.color = color;
@@ -51,7 +47,7 @@ public class CustomColor_Scene_Mechanics : MonoBehaviour
 
     public void SetNewColor()
     {
-        if (prefsController.GetCoins() > ccData.price)
+        if (prefsController.GetCoins() >= ccData.price)
         {
             prefsController.UpdateCoins(-ccData.price);
 
@@ -59,7 +55,7 @@ public class CustomColor_Scene_Mechanics : MonoBehaviour
             prefsController.SetSavedColorValue("Blue", ccData.blueSlider.value);
             prefsController.SetSavedColorValue("Green", ccData.greenSlider.value);
 
-            UpdateUI();
+            ccData.backToShopButton.onClick.Invoke();
         }        
     }
 }
