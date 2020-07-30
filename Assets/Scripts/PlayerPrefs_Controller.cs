@@ -10,6 +10,14 @@ public class PlayerPrefs_Controller : MonoBehaviour
     // Item buy Status - int
     // Best score functions
 
+    private void Awake()
+    {
+        if (!PlayerPrefs.HasKey("Red")) SetSavedColorValue("Red", 1);
+        if (!PlayerPrefs.HasKey("Green")) SetSavedColorValue("Green", 1);
+        if (!PlayerPrefs.HasKey("Blue")) SetSavedColorValue("Blue", 1);
+    }
+
+
     public void SetBestScore(float newBest)
     {
         PlayerPrefs.SetFloat("Best Score", newBest);
