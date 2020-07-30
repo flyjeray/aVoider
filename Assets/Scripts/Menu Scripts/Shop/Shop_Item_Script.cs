@@ -10,7 +10,7 @@ public class Shop_Item_Script : MonoBehaviour
     [SerializeField] private int price;
     [SerializeField] private string itemName;
     private Material sellingMaterial;
-    [SerializeField] private Image image;
+    [SerializeField] private Image itemImage;
     
     [SerializeField] private PlayerPrefs_Controller prefsController;
     [SerializeField] private TextMeshProUGUI priceText;
@@ -20,6 +20,8 @@ public class Shop_Item_Script : MonoBehaviour
     
     private void Start()
     {
+        itemImage.gameObject.transform.position = new Vector3(itemImage.transform.position.x, itemImage.transform.position.y, -1);
+
         Debug.Log("PlayerCoins: " + prefsController.GetCoins());
 
         sellingMaterial = transform.Find("Image").GetComponent<Image>().material;
@@ -30,9 +32,17 @@ public class Shop_Item_Script : MonoBehaviour
         if (itemName != "WhiteMaterial" && itemName != "CustomMaterial") SetBoughtStatus();
         else isBought = true;
 
-        if (image.material.name == "CustomMaterial")
+        if (itemImage.material.name == "Reach50Material")
         {
-            Material newSettedMaterial = image.material;
+            float bestScore = prefsController.GetBestScore();
+
+            if (bestScore >= 50) isBought = true;
+            else isBought = false;
+        }
+
+        if (itemImage.material.name == "CustomMaterial")
+        {
+            Material newSettedMaterial = itemImage.material;
 
             Color color = prefsController.GetSavedColor();
 
@@ -40,7 +50,7 @@ public class Shop_Item_Script : MonoBehaviour
             newSettedMaterial.SetColor("_EmissionColor", color);
             newSettedMaterial.SetColor("_Color", color);
 
-            image.material = newSettedMaterial;
+            itemImage.material = newSettedMaterial;
         }
 
         UpdateText();
@@ -55,9 +65,14 @@ public class Shop_Item_Script : MonoBehaviour
     public void UpdateText()
     {
         // Если предмет не куплен, в текст под ним выводится его цена
-        if (!isBought)
+        if (!isBought && itemName != "Reach50Material")
         {
             priceText.text = price.ToString();
+        }
+
+        else if (!isBought && itemName == "Reach50Material")
+        {
+            priceText.text = "Reach 50";
         }
 
         // Если предмет куплен и является активным, в текст под ним выводится надпись "Equipped"
@@ -81,7 +96,7 @@ public class Shop_Item_Script : MonoBehaviour
     
     public void Buy()
     {
-        if (!isBought && prefsController.GetCoins() >= price)
+        if (!isBought && prefsController.GetCoins() >= price && itemName != "Reach50Material")
         {
             prefsController.UpdateCoins(-price);
             prefsController.SetItemBought(itemName);
