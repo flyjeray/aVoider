@@ -117,9 +117,9 @@ public class Game_Controller : MonoBehaviour
         {
             int earnedCoins = Convert.ToInt32(gameData.playerScore * 1.5f);
             prefsController.UpdateCoins(earnedCoins);
+            prefsController.UpdateTotalCoins(earnedCoins);
 
             coinsString = ("Your coins: " + prefsController.GetCoins() + " (Earned: " + (int)earnedCoins + ")");
-
         }
 
         bestScoreText.text = bestScoreString;

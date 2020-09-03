@@ -38,7 +38,6 @@ public class PlayerPrefs_Controller : MonoBehaviour
     public void UpdateCoins(int earnedCoins)
     {
         PlayerPrefs.SetInt("Coins", PlayerPrefs.GetInt("Coins") + earnedCoins);
-        UpdateTotalCoins(earnedCoins);
     }
     
     public int GetCoins()
